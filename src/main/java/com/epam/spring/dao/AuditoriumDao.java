@@ -11,8 +11,8 @@ public interface AuditoriumDao {
 
     List<Auditorium> getAuditoriums();
 
-    Integer getSeatsNumber();
+    String[] getSeatsNumber(Auditorium auditorium);
 
-    Integer getVipSeats();
+    String[] getVipSeats(Auditorium auditorium);
 
 }

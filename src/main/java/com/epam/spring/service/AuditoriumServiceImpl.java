@@ -19,11 +19,11 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         return auditoriumDao.getAuditoriums();
     }
 
-    public Integer getSeatsNumber() {
-        return auditoriumDao.getSeatsNumber();
+    public String[] getSeatsNumber(Auditorium auditorium) {
+        return auditoriumDao.getSeatsNumber(auditorium);
     }
 
-    public Integer getVipSeats() {
-        return auditoriumDao.getVipSeats();
+    public String[] getVipSeats(Auditorium auditorium) {
+        return auditoriumDao.getVipSeats(auditorium);
     }
 }

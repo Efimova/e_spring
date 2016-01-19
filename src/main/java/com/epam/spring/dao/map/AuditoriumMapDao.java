@@ -25,17 +25,30 @@ public class AuditoriumMapDao implements AuditoriumDao {
         this.auditoriums = auditoriums;
     }
 
-    public Integer getSeatsNumber() {
+    public String[] getSeatsNumber(final Auditorium auditorium) {
+//        class SeatsClosure implements Closure {
+//            Integer totalSum = 0;
+//
+//            public void execute(Object o) {
+//                if (o != null && o instanceof Auditorium) {
+//                    totalSum += ((Auditorium) o).getSeats().length;
+//                }
+//            }
+//
+//            public Integer getTotalSum() {
+//                return totalSum;
+//            }
+//        }
         class SeatsClosure implements Closure {
-            Integer totalSum = 0;
+            String[] totalSum;
 
             public void execute(Object o) {
-                if (o != null && o instanceof Auditorium) {
-                    totalSum += ((Auditorium) o).getSeats().length;
+                if (o != null && o.equals(auditorium)) {
+                    totalSum = ((Auditorium) o).getSeats();
                 }
             }
 
-            public Integer getTotalSum() {
+            public String[] getTotalSum() {
                 return totalSum;
             }
         }
@@ -44,18 +57,18 @@ public class AuditoriumMapDao implements AuditoriumDao {
         return closure.getTotalSum();
     }
 
-    public Integer getVipSeats() {
+    public String[] getVipSeats(final Auditorium auditorium) {
 
         class VipSeatsClosure implements Closure {
-            private Integer totalSum = 0;
+            private String[] totalSum;
 
             public void execute(Object o) {
-                if (o != null && o instanceof Auditorium) {
-                    totalSum += ((Auditorium) o).getVipSeats().length;
+                if (o != null && o.equals(auditorium)) {
+                    totalSum = ((Auditorium) o).getVipSeats();
                 }
             }
 
-            public Integer getTotalSum() {
+            public String[] getTotalSum() {
                 return totalSum;
             }
         }

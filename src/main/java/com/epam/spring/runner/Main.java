@@ -23,6 +23,7 @@ import java.util.*;
  */
 @Component("main")
 public class Main {
+
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userService;
@@ -55,18 +56,14 @@ public class Main {
         main.getUserService().register(user);
 
         //Create Events
-        Event eventJava = context.getBean(Event.class);
-        eventJava.setName("Java Day");
-        eventJava.setDate(getDate(2016, 10, 21));
 
-        eventJava.setRating(Rate.HIGH);
-        main.eventService.create(eventJava);
-
-        Event eventJS = context.getBean(Event.class);
-        main.eventService.create(eventJS);
-
-        Event eventWS = context.getBean(Event.class);
-        main.eventService.create(eventWS);
+        main.eventService.create("Java Day", getDate(2016, 10, 21), getTime(12, 12), Rate.HIGH, 100);
+        Event eventJava = main.eventService.getByName("JavaDay");
+//        Event eventJS = context.getBean(Event.class);
+//        main.eventService.create(eventJS);
+//
+//        Event eventWS = context.getBean(Event.class);
+//        main.eventService.create(eventWS);
 
         //Create tickets java event
         Ticket ticketJava1 = context.getBean(Ticket.class);
@@ -95,21 +92,28 @@ public class Main {
 
         List<Ticket> ticketsWS = Arrays.asList(ticketWS1, ticketWS2, ticketWS3, ticketWS4, ticketWS5);
 
-        eventJava.setTickets(ticketsJava);
-        eventJS.setTickets(ticketsJS);
-        eventWS.setTickets(ticketsWS);
+//        eventJava.setTickets(ticketsJava);
+//        eventJS.setTickets(ticketsJS);
+//        eventWS.setTickets(ticketsWS);
 
         //Create auditorium
-      //  Auditorium auditorium = context.getBean(Auditorium.class);
+        //  Auditorium auditorium = context.getBean(Auditorium.class);
+        Auditorium auditorium = main.auditoriumService.getAuditoriums().get(0);
+        main.eventService.assignAuditorium(eventJava,auditorium, eventJava.getDate() );
+
+        main.bookingService.bookTicket(user, ticketJava1);
 
         System.out.println(Joiner.on(",").join(main.auditoriumService.getAuditoriums()));
         System.out.println(main.auditoriumService.getSeatsNumber());
 
     }
 
-    private static Date getDate(int i, int i1, int i2) {
-        Calendar date = Calendar.getInstance();
-        date.set(i, i1, i2);
-        return date.getTime();
+    private static String getTime(int i, int i2) {
+        return Joiner.on(":").join(new Integer[]{i, i2});
+    }
+
+    private static String getDate(int i, int i1, int i2) {
+
+        return Joiner.on("").join(new Integer[]{i, i1, i2});
     }
 }

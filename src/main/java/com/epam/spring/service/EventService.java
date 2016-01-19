@@ -2,6 +2,7 @@ package com.epam.spring.service;
 
 import com.epam.spring.domain.Auditorium;
 import com.epam.spring.domain.Event;
+import com.epam.spring.helper.Rate;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Created by Anna_Efimova on 1/14/2016.
  */
 public interface EventService {
-    void create(Event event);
+    void create(String name, String date, String time, Rate rate, Integer price);
 
     void remove(Event event);
 
@@ -22,5 +23,5 @@ public interface EventService {
 
     List<Event> getNextEvents(Date to);
 
-    void assignAuditorium(Event event, Auditorium auditorium, Date date);
+    void assignAuditorium(Event event, Auditorium auditorium, String date);
 }

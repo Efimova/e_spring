@@ -11,7 +11,7 @@ import java.util.List;
 public interface AuditoriumService {
 
     List<Auditorium> getAuditoriums();
-    Integer getSeatsNumber();
-    Integer getVipSeats();
+    String[] getSeatsNumber(Auditorium auditorium);
+    String[] getVipSeats(Auditorium auditorium);
 
 }

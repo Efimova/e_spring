@@ -12,6 +12,7 @@ remove, getByName, getAll
 getForDateRange(from, to) - returns events for specified date range (OPTIONAL)
 getNextEvents(to) - returns events from now till the ‘to’ date (OPTIONAL)
 assignAuditorium(event, auditorium, date) - assign auditorium for event for specific date
+
 ## AuditoriumService - Returns info about auditoriums and places
 
 Since auditorium information is usually static, store it in some property file. The information that needs to be stored is:
@@ -23,6 +24,7 @@ Since auditorium information is usually static, store it in some property file. 
 Several auditoriums can be stored in separate property files, information from them could be injected into the AuditoriumService
 
 getAuditoriums(), getSeatsNumber(), getVipSeats()
+
 ## BookingService - Manages tickets, prices, bookings
 
 getTicketPrice(event, date, time, seats, user) - returns price for ticket for specified event on specific date and time for specified seats.

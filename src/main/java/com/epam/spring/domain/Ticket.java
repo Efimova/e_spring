@@ -11,16 +11,25 @@ import java.util.Date;
 @Component
 public class Ticket {
     private String barcode;
-    private Date date;
+    private String date;
     private User user;
     private Event event;
     private Auditorium auditorium;
+    private String seat;
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public void setSeat(String seat) {
+        this.seat = seat;
+    }
+
+    public String getSeat() {
+        return seat;
+    }
+
+    public String getDate() {
         return date;
     }
 
