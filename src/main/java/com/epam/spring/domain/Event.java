@@ -27,6 +27,10 @@ public class Event {
         this.basePrice = price;
     }
 
+    public Event() {
+
+    }
+
     public List<Ticket> getPurchasedTickets() {
         return purchasedTickets;
     }

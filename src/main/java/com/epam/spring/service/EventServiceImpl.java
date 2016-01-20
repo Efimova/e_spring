@@ -1,10 +1,10 @@
 package com.epam.spring.service;
 
+import com.epam.spring.dao.EventDao;
 import com.epam.spring.domain.Auditorium;
 import com.epam.spring.domain.Event;
 import com.epam.spring.domain.Ticket;
 import com.epam.spring.helper.Rate;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -23,12 +23,15 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private ApplicationContext appContext;
 
+    @Autowired
+    private EventDao eventDao;
+
     public void setAppContext(ApplicationContext appContext) {
         this.appContext = appContext;
     }
 
     public void create(String name, String date, String time, Rate rate, Integer price) {
-        events.add(new Event(name, date, time, price, rate));
+        eventDao.create(new Event(name, date, time, price, rate));
     }
 
     public void remove(Event event) {
@@ -40,12 +43,8 @@ public class EventServiceImpl implements EventService {
     }
 
     public Event getByName(String name) {
-        for (Event event : events) {
-            if (event.getName().equals(name)) {
-                return event;
-            }
-        }
-        return null;
+
+        return eventDao.getByName(name);
     }
 
     public List<Event> getAll() {

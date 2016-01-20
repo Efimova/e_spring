@@ -57,7 +57,7 @@ public class Main {
 
         //Create Events
 
-        main.eventService.create("Java Day", getDate(2016, 10, 21), getTime(12, 12), Rate.HIGH, 100);
+        main.eventService.create("JavaDay", getDate(2016, 10, 21), getTime(12, 12), Rate.HIGH, 100);
         Event eventJava = main.eventService.getByName("JavaDay");
 //        Event eventJS = context.getBean(Event.class);
 //        main.eventService.create(eventJS);
@@ -104,7 +104,7 @@ public class Main {
         main.bookingService.bookTicket(user, ticketJava1);
 
         System.out.println(Joiner.on(",").join(main.auditoriumService.getAuditoriums()));
-        System.out.println(main.auditoriumService.getSeatsNumber());
+        System.out.println(main.auditoriumService.getSeatsNumber(auditorium));
 
     }
 
